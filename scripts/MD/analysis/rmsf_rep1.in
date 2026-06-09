@@ -1,0 +1,10 @@
+parm ../prep/HMP_prot.parm7
+trajin ../3_prod/rep1_prod_autoimage.nc
+center :1-269
+
+rms first :1-266@CA,C,N,O
+average crdset MyAvg
+run
+rms ref MyAvg :1-266@CA,C,N,O
+atomicfluct out rmsf/rmsf_prot_rep1.dat :1-266@CA,C,N,O byres
+run

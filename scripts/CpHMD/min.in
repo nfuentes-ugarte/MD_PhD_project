@@ -1,0 +1,11 @@
+Minimization with Cartesian restraints for the solute
+ &cntrl
+ imin=1, maxcyc=10000,
+ ncyc = 5000,
+ ntpr=5,
+ cut=10,
+ nmropt= 0,
+  /
+ &wt type='END' /
+ DISANG=rest
+

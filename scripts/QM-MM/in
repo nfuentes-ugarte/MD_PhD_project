@@ -1,0 +1,41 @@
+QM/MM Gaussian interface MD
+&cntrl
+  imin      = 0,        ! Minimization off
+  ntf       = 1,        ! Bond interactions involving H-atoms omitted, use with NTC=1
+  temp0     = 300.0,    ! Reference temperature at which the system is to be kept
+  tempi     = 300.0,    ! Initial temperature
+  ntt       = 3,        ! Switch for temperature scaling. Use Langevin dynamics with the collision frequency Î³ given by gamma_ln
+  irest     = 0,        ! restart a simualtion
+  ntx       = 1,        ! Reading the coordinates and velocity from the  rst file
+  ntb       = 1,        ! Volume constant
+  cut       = 10.0,     ! Non bonded cut
+  gamma_ln  = 2.0,      ! Collision frequency
+  nstlim    = 1000000,  ! Steps, for 10 ps
+  dt        = 0.001,    ! Every step of 1 fs
+  ntpr      = 50,       ! Print the progress every ntpr steps
+  ntwx      = 50,       ! Every ntwx steps, the coordinates will be written to the mdcrd file.
+  ntwr      = 50,       ! Every ntwr steps during dynamics, the restrt file will be written
+  ntxo      = 1,        ! Format of the final coordinates,
+  ifqnt     = 1,        ! Switch on QM/MM coupled potential
+  ig        = XXXXX
+  nmropt    = 1,
+  asm       = 1,        !Flag to turn on Adaptative String Method
+/
+ &asm
+ dir = 'results/'
+ guess_file = 'guess'
+  preparation_steps = 2000
+  z_bias = .true.
+  fix_ends = .true.
+ /
+  &qmmm
+  qmmask = '@3983-3999,4027-4049,4056-4067,4179-4181,3147-3158,1652-1667',
+  qmcharge= -1,
+  qm_theory= 'dftb3',
+  dftb_slko_path = '/storage/scratch/lv87/lv87737/nicolas/dftb3_par_OPhyd',
+  spin=1,
+  writepdb  = 1, !QM region will be written on the very first step to the file qmmm_region.pdb
+  qmcut=10
+/
+&wt type='END' /
+DISANG=restr

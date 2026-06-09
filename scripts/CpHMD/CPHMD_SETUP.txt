@@ -1,0 +1,1 @@
+cpinutil.py -p HMPP_prot.parm7 -igb 2 -resnums 23 77 105 111 142 179 209 213 -o cpin -op HMPP_prot_cphmd.parm7 -system HMPP

@@ -1,0 +1,19 @@
+source leaprc.constph
+source leaprc.water.tip3p
+source leaprc.gaff2
+loadAmberParams ATP.frcmod
+loadAmberParams HMPP.frcmod
+loadAmberPrep HMPP.prepin
+loadAmberPrep ATP.prepin
+
+ligs = loadPDB ligandos.pdb
+protein = loadPDB ancEn_slig.pdb
+
+sys = combine {protein ligs}
+charge sys
+addions sys Na+ 0
+solvateoct sys TIP3PBOX 14.0
+addions sys Na+ 0
+savePdb sys HMPP_prot.pdb
+saveAmberParm sys HMPP_prot.parm7 HMPP_prot.rst7
+quit

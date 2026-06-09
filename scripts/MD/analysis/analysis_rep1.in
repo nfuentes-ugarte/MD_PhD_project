@@ -1,0 +1,15 @@
+parm ../prep/HMP_prot.parm7
+trajin ../3_prod/rep1_prod_autoimage.nc
+reference ../0_min/HMP_prot_min.ncrst
+
+# === RMSD ===
+rms CA :1-266@CA reference out rmsd/rmsd_CA_rep1.dat mass
+
+# === Radio de giro ===
+radgyr :1-266@CA out rg/radgyr_rep1.dat
+
+
+# === SASA ===
+surf sasa_proteina :1-266 out sasa/sasa_proteina_cpptraj_rep1.dat
+
+run

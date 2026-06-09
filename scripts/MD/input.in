@@ -1,0 +1,20 @@
+source oldff/leaprc.ff14SB
+source leaprc.protein.ff14SB
+source leaprc.water.tip3p
+source leaprc.gaff2
+loadAmberParams ATP.frcmod
+loadAmberParams HMH.frcmod
+loadAmberPrep HMH.prepin
+loadAmberPrep ATP.prepin
+
+aguas = loadPDB aguas.pdb
+ligs = loadPDB ligandos.pdb
+protein = loadPDB proteina.pdb
+
+sys = combine {protein ligs aguas}
+charge sys
+addions sys Na+ 0
+solvateoct sys TIP3PBOX 14.0
+savePdb sys HMP_prot.pdb
+saveAmberParm sys HMP_prot.parm7 HMP_prot.rst7
+quit
